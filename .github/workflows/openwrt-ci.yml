@@ -52,6 +52,14 @@ jobs:
           # ln -s /mnt/openwrt/staging_dir ./staging_dir
 
           df -h
+          
+      - name: 自定义插件主题。
+        run: |
+          cd package
+          mkdir openwrt-packages
+          cd openwrt-packages
+          git clone https://github.com/trojan-gfw/openwrt-trojan.git
+          git clone https://github.com/Ameykyl/luci-app-koolproxyR
 
       - name: Update feeds
         run: |
@@ -161,6 +169,8 @@ jobs:
           CONFIG_PACKAGE_luci-app-webadmin=y
           CONFIG_PACKAGE_luci-app-wireguard=y
           CONFIG_PACKAGE_luci-app-wrtbwmon=y
+          CONFIG_PACKAGE_openwrt-trojan=y
+          CONFIG_PACKAGE_luci-app-koolproxyR=y
           EOF
 
           # LuCI主题:
